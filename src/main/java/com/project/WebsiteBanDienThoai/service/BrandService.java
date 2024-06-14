@@ -23,7 +23,7 @@ public class BrandService {
 
     public Brand getBrandById(Long id) {
         Optional<Brand> brand = brandRepository.findById(id);
-        return brand.orElse(null); // hoặc throw ngoại lệ nếu cần
+        return brand.orElse(null);
     }
 
     public Brand saveBrand(Brand brand){
