@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security6"
+      layout:decorate="~{layout}">
+<head>
+    <title>Categories</title>
+</head>
+<body>
+<section layout:fragment="content">
+    <section class="content-header"><h1>Danh sách thể loại</h1></section>
+    <section class="content">
+        <a class="btn btn-sm btn-info btn-flat" sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/admin/categories/add}">Add Category</a>
+        <div class="box box-info">
+            <div class="box-body">
+                <div class="table-responsive">
+                    <table class="table no-margin">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="category : ${categories}">
+                                <td th:text="${category.id}">ID</td>
+                                <td th:text="${category.name}">Name</td>
+                                <td>
+                                    <a sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/admin/categories/edit/{id}(id=${category.id})}">Edit</a>
+                                    <a sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/admin/categories/delete/{id}(id=${category.id})}">Delete</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+</body>
+</html>

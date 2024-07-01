@@ -1,7 +1,6 @@
 package com.project.WebsiteBanDienThoai.service;
 import com.project.WebsiteBanDienThoai.model.Brand;
 import com.project.WebsiteBanDienThoai.repository.BrandRepository;
-import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,7 +33,6 @@ public class BrandService {
         Brand brand = getBrandById(id);
         if (brand != null) {
             brand.setName(brandDetails.getName());
-            brand.setLogo(brandDetails.getLogo());
             return brandRepository.save(brand);
         }
         return null;

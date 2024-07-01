@@ -36,8 +36,18 @@ public class Order {
     @Column(name = "phone", nullable = false)
     private String phone;
 
+    @Column(name = "description", nullable = false)
+    private String description;
+
+    @Column(name = "total_price", nullable = false)
+    private double totalPrice;
+
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderDetail> orderDetails;
+
+    @ManyToOne
+    @JoinColumn(name = "status_order_id")
+    private StatusOrder statusOrder;
 
     @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
     private Payment payment;

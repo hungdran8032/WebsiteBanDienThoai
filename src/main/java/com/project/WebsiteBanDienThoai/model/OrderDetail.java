@@ -20,12 +20,6 @@ public class OrderDetail {
     @Column(name = "quantity", nullable = false)
     private Integer quantity;
 
-    @Column(name = "total_price", nullable = false)
-    private Double totalPrice;
-
-    @Column(name = "description")
-    private String description;
-
     @ManyToOne
     @JoinColumn(name = "order_id", nullable = false)
     private Order order;
@@ -33,4 +27,8 @@ public class OrderDetail {
     @ManyToOne
     @JoinColumn(name = "product_id", nullable = false)
     private Product product;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }

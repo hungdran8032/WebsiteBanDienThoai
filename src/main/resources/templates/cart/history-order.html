@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head th:replace="fragment/head :: head"></head>
+<body>
+<div class="page-wrapper">
+    <header th:replace="fragment/header :: header"></header>
+    <main class="main">
+        <div class="page-header text-center" style="background-image: url('/fe/images/page-header-bg.jpg')">
+            <div class="container">
+                <h1 class="page-title">Lịch sử<span>mua hàng</span></h1>
+            </div>
+        </div>
+        <nav aria-label="breadcrumb" class="breadcrumb-nav mb-2">
+            <div class="container">
+            </div>
+        </nav>
+        <div class="page-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <table class="table table-cart table-mobile">
+                            <thead>
+                            <tr>
+                                <th>Mã đơn hàng</th>
+                                <th>Tên khách hàng</th>
+                                <th>Địa chỉ</th>
+                                <th>SDT</th>
+                                <th>Ngày đặt hàng</th>
+                                <th>Tổng đơn hàng</th>
+                                <th>Trạng thái đơn hàng</th>
+                                <th>Chi tiết</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="orderdetail : ${orders}">
+                                <td th:text="${orderdetail.order.id}"></td>
+                                <td th:text="${orderdetail.order.firstName} + ' ' + ${orderdetail.order.lastName}"></td>
+                                <td th:text="${orderdetail.order.address}"></td>
+                                <td th:text="${orderdetail.order.phone}"></td>
+                                <td th:text="${orderdetail.order.orderDate}"></td>
+                                <td th:text="${orderdetail.order.totalPrice}"></td>
+                                <td th:text="${orderdetail.order.statusOrder.name}"></td>
+                                <td>Xem chi tiết đơn hàng</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer th:replace="fragment/footer :: footer"></footer>
+</div><!-- End .page-wrapper -->
+<button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
+<script th:replace="fragment/script :: script"></script>
+</body>
+</html>

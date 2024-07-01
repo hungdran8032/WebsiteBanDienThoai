@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head th:replace="fragment/head :: head"></head>
+<body>
+<div class="page-wrapper">
+    <header th:replace="fragment/header :: header"></header>
+    <main class="main">
+        <div class="page-header text-center" style="background-image: url('fe/images/page-header-bg.jpg')">
+            <div class="container">
+                <h1 class="page-title">Bài viết</h1>
+            </div><!-- End .container -->
+        </div><!-- End .page-header -->
+        <nav aria-label="breadcrumb" class="breadcrumb-nav mb-3">
+            <div class="container">
+
+            </div><!-- End .container -->
+        </nav><!-- End .breadcrumb-nav -->
+
+        <div class="page-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-9">
+                        <article class="entry">
+                            <div class="entry-body">
+                                <div class="entry-meta">
+                                        <span class="entry-author">
+                                            by <a href="#">John Doe</a>
+                                        </span>
+                                    <span class="meta-separator">|</span>
+                                    <a href="#">Nov 22, 2018</a>
+                                    <span class="meta-separator">|</span>
+                                    <a href="#">2 Comments</a>
+                                </div><!-- End .entry-meta -->
+
+                                <h2 class="entry-title">
+                                    <a href="single.html">Cras ornare tristique elit.</a>
+                                </h2><!-- End .entry-title -->
+
+                                <div class="entry-cats">
+                                    in <a href="#">Lifestyle</a>,
+                                    <a href="#">Shopping</a>
+                                </div><!-- End .entry-cats -->
+
+                                <div class="entry-content">
+                                    <p>Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales leo, eget blandit nunc tortor eu nibh. Suspendisse potenti. Sed egestas, ante et vulputate volutpat, uctus metus libero eu augue.</p>
+                                    <a href="single.html" class="read-more">Continue Reading</a>
+                                </div><!-- End .entry-content -->
+                            </div><!-- End .entry-body -->
+                        </article><!-- End .entry -->
+                        <article class="entry">
+                            <div class="entry-body">
+                                <div class="entry-meta">
+                                        <span class="entry-author">
+                                            by <a href="#">John Doe</a>
+                                        </span>
+                                    <span class="meta-separator">|</span>
+                                    <a href="#">Nov 21, 2018</a>
+                                    <span class="meta-separator">|</span>
+                                    <a href="#">0 Comments</a>
+                                </div><!-- End .entry-meta -->
+
+                                <h2 class="entry-title">
+                                    <a href="single.html">Vivamus vestibulum ntulla necante.</a>
+                                </h2><!-- End .entry-title -->
+
+                                <div class="entry-cats">
+                                    in <a href="#">Lifestyle</a>
+                                </div><!-- End .entry-cats -->
+
+                                <div class="entry-content">
+                                    <p>Morbi purus libero, faucibus adipiscing, commodo quis, gravida id, est. Vestibulum volutpat, lacus a ultrices sagittis, mi neque euismod dui, eu pulvinar nunc sapien ornare nisl. Phasellus pede arcu, dapibus eu, fermentum eturna.</p>
+                                    <a href="single.html" class="read-more">Continue Reading</a>
+                                </div><!-- End .entry-content -->
+                            </div><!-- End .entry-body -->
+                        </article><!-- End .entry -->
+                    </div><!-- End .col-lg-9 -->
+                    <aside class="col-lg-3">
+                        <div class="sidebar">
+                            <div class="widget widget-search">
+                                <h3 class="widget-title">Tìm kiếm</h3><!-- End .widget-title -->
+
+                                <form action="#">
+                                    <label for="ws" class="sr-only">Tìm kiếm bài viết</label>
+                                    <input type="search" class="form-control" name="ws" id="ws" placeholder="Tìm kiếm bài viết" required>
+                                    <button type="submit" class="btn"><i class="icon-search"></i><span class="sr-only">Search</span></button>
+                                </form>
+                            </div><!-- End .widget -->
+                            <div class="widget widget-text">
+                                <h3 class="widget-title">Về bài viết</h3><!-- End .widget-title -->
+
+                                <div class="widget-text-content">
+                                    <p>Nơi đâu để đọc những bài viết liên quan về cửa hàng điện thoại chúng tôi</p>
+                                </div><!-- End .widget-text-content -->
+                            </div><!-- End .widget -->
+                        </div><!-- End .sidebar -->
+                    </aside><!-- End .col-lg-3 -->
+                </div><!-- End .row -->
+            </div><!-- End .container -->
+        </div><!-- End .page-content -->
+    </main><!-- End .main -->
+    <footer th:replace="fragment/footer :: footer"></footer>
+</div><!-- End .page-wrapper -->
+<button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
+<script th:replace="fragment/script :: script"></script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security6"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách sản phẩm</title>
+</head>
+<body>
+<section  layout:fragment="content" >
+    <section class="content-header"><h1>Danh sách tài khoản khách hàng</h1></section>
+    <section class="content">
+        <div class="box box-info">
+            <div class="box-body">
+                <div class="table-responsive">
+                    <table class="table no-margin">
+                        <thead>
+                        <tr>
+                            <th>Tên đăng nhập</th>
+                            <th>Họ và tên</th>
+                            <th>Địa chỉ</th>
+                            <th>Số điện thoại</th>
+            <!--                <th>Tạo vào ngày</th>-->
+                            <th>Quyền</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="user : ${users}">
+                            <td th:text="${user.username}">Tên đăng nhập</td>
+                            <td th:text="${user.firstName} + ' '+ ${user.lastName}">Họ</td>
+                            <td th:text="${user.address != null && !#strings.isEmpty(user.address) ? user.address : 'Chưa cập nhật'}">Địa chỉ</td>
+                            <td th:text="${user.phone}">SDT</td>
+                            <td th:each="role : ${user.roles}" th:text="${role.name}">
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+</body>
+</html>

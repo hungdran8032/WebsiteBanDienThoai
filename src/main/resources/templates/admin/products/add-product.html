@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security6"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Thêm Sản Phẩm</title>
+</head>
+<body>
+<section  layout:fragment="content" >
+    <section class="content-header"><h1>Thêm sản phẩm</h1></section>
+    <section class="content">
+        <form th:action="@{/admin/products/add}" th:object="${products}" method="post" enctype="multipart/form-data">
+            <div>
+                <label for="name">Tên sản phẩm:</label>
+                <input type="text" id="name" th:field="*{name}" />
+                <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Tên sản phẩm không hợp lệ</div>
+            </div>
+
+            <div>
+                <label for="description">Mô tả:</label>
+                <textarea id="description" th:field="*{description}"></textarea>
+                <div th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Mô tả không hợp lệ</div>
+            </div>
+
+            <div>
+                <label for="price">Giá:</label>
+                <input type="number" id="price" th:field="*{price}" />
+                <div th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Giá không hợp lệ</div>
+            </div>
+
+            <div>
+                <label for="stock">Số lượng trong kho:</label>
+                <input type="number" id="stock" th:field="*{stock}" />
+                <div th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}">Số lượng không hợp lệ</div>
+            </div>
+
+
+            <div>
+                <label for="category">Danh mục:</label>
+                <select id="category" th:field="*{category.id}">
+                    <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
+                </select>
+            </div>
+
+            <div>
+                <label for="brand">Thương hiệu:</label>
+                <select id="brand" th:field="*{brand.id}">
+                    <option th:each="brand : ${brands}" th:value="${brand.id}" th:text="${brand.name}"></option>
+                </select>
+            </div>
+            <div>
+
+                <label for="typeOfProduct">Loại sản phẩm:</label>
+                <select id="typeOfProduct" th:field="*{typeOfProduct.id}">
+                    <option th:each="typeOfProduct : ${typeOfProducts}" th:value="${typeOfProduct.id}" th:text="${typeOfProduct.name}"></option>
+                </select>
+            </div>
+            <div>
+                <label for="image">Hình ảnh:</label>
+                <input type="file" id="image" name="images"/>
+            </div>
+
+            <div th:if="${errorMessage}">
+                <p th:text="${errorMessage}" style="color:red;"></p>
+            </div>
+
+            <div>
+                <button type="submit">Thêm Sản Phẩm</button>
+            </div>
+        </form>
+    </section>
+</section>
+</body>
+</html>

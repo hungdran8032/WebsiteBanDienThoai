@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head th:replace="fragment/head :: head"></head>
+<body>
+<div class="page-wrapper">
+    <header th:replace="fragment/header :: header"></header>
+    <main class="main">
+        <nav aria-label="breadcrumb" class="breadcrumb-nav border-0 mb-0">
+            <div class="container">
+
+            </div><!-- End .container -->
+        </nav><!-- End .breadcrumb-nav -->
+        <div class="container">
+            <div class="page-header page-header-big text-center" style="background-image: url('fe/images/contact-header-bg.jpg')">
+                <h1 class="page-title text-white">Liên hệ cho chúng tôi<span class="text-white">nếu bạn có thắc mắc</span></h1>
+            </div><!-- End .page-header -->
+        </div><!-- End .container -->
+
+        <div class="page-content pb-0">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 mb-2 mb-lg-0">
+                        <h2 class="title mb-1">Thông tin liên hệ</h2>
+                        <div class="row">
+                            <div class="col-sm-7">
+                                <div class="contact-info">
+                                    <h3>Địa chỉ</h3>
+
+                                    <ul class="contact-list">
+                                        <li>
+                                            <i class="icon-map-marker"></i>
+                                            Trường đại học công nghệ thành phố HCM - HUTECH
+                                        </li>
+                                        <li>
+                                            <i class="icon-phone"></i>
+                                            <a href="tel:#">+123456789</a>
+                                        </li>
+                                        <li>
+                                            <i class="icon-envelope"></i>
+                                            <a href="https://portotheme.com/cdn-cgi/l/email-protection#fedd"><span class="__cf_email__" data-cfemail="97fef9f1f8d7daf8fbfbf6b9f4f8fa">hutech@gmail.com</span></a>
+                                        </li>
+                                    </ul><!-- End .contact-list -->
+                                </div><!-- End .contact-info -->
+                            </div><!-- End .col-sm-7 -->
+
+                            <div class="col-sm-5">
+                                <div class="contact-info">
+                                    <h3>Thời gian hoạt động</h3>
+
+                                    <ul class="contact-list">
+                                        <li>
+                                            <i class="icon-clock-o"></i>
+                                            <span class="text-dark">Thứ 2 đến thứ 7</span> <br>8 a.m - 17 p.m
+                                        </li>
+                                        <li>
+                                            <i class="icon-calendar"></i>
+                                            <span class="text-dark">Sunday</span> <br>8 a.m - 10 a.m
+                                        </li>
+                                    </ul><!-- End .contact-list -->
+                                </div><!-- End .contact-info -->
+                            </div><!-- End .col-sm-5 -->
+                        </div><!-- End .row -->
+                    </div><!-- End .col-lg-6 -->
+                    <div class="col-lg-6">
+                        <h2 class="title mb-1">Thắc mắc?</h2><!-- End .title mb-2 -->
+                        <p class="mb-2">Hãy điền vào form và gửi cho chúng tôi</p>
+
+                        <form action="#" class="contact-form mb-3">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label for="cname" class="sr-only">Tên</label>
+                                    <input type="text" class="form-control" id="cname" placeholder="Tên *" required>
+                                </div><!-- End .col-sm-6 -->
+
+                                <div class="col-sm-6">
+                                    <label for="cemail" class="sr-only">Email</label>
+                                    <input type="email" class="form-control" id="cemail" placeholder="Email *" required>
+                                </div><!-- End .col-sm-6 -->
+                            </div><!-- End .row -->
+                            <label for="cmessage" class="sr-only">Thắc mắc</label>
+                            <textarea class="form-control" cols="30" rows="4" id="cmessage" required placeholder="Thắc mắc *"></textarea>
+
+                            <button type="submit" class="btn btn-outline-primary-2 btn-minwidth-sm">
+                                <span>GỬI</span>
+                                <i class="icon-long-arrow-right"></i>
+                            </button>
+                        </form><!-- End .contact-form -->
+                    </div><!-- End .col-lg-6 -->
+                </div><!-- End .row -->
+            </div><!-- End .container -->
+
+        </div><!-- End .page-content -->
+    </main><!-- End .main -->
+    <footer th:replace="fragment/footer :: footer"></footer>
+</div><!-- End .page-wrapper -->
+<button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
+<script th:replace="fragment/script :: script"></script>
+</body>
+</html>

@@ -25,7 +25,7 @@ public class Product {
     @Column(name = "image", nullable = false)
     private String image;
 
-    @Column(name = "description")
+    @Column(name = "description", nullable = false)
     private String description;
 
     @Column(name = "price", nullable = false)
@@ -34,20 +34,8 @@ public class Product {
     @Column(name = "stock", nullable = false)
     private Integer stock;
 
-    @Column(name = "demand", nullable = false)
-    private String demand;
-
-    @Column(name = "ram", nullable = false)
-    private String ram;
-
-    @Column(name = "storage", nullable = false)
-    private String storage;
-
-    @Column(name = "chargingFeature", nullable = false)
-    private String chargingFeature;
-
-    @Column(name = "specialFeature", nullable = false)
-    private String specialFeature;
+    @Column(name = "detail_description", nullable = false)
+    private String detailDescription;
 
     @ManyToOne
     @JoinColumn(name = "brand_id", nullable = false)
@@ -62,4 +50,12 @@ public class Product {
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderDetail> orderDetails;
+
+    @ManyToOne
+    @JoinColumn(name = "status_product_id")
+    private StatusProduct statusProduct;
+
+    @ManyToOne
+    @JoinColumn(name = "type_of_product")
+    private TypeOfProduct typeOfProduct;
 }

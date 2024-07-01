@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head th:replace="fragment/head :: head"></head>
+<body>
+<div class="page-wrapper">
+    <header th:replace="fragment/header :: header"></header>
+    <main class="main">
+        <div class="page-header text-center" style="background-image: url('/fe/images/page-header-bg.jpg')">
+            <div class="container">
+                <h1 class="page-title">Thanh toán<span>hóa đơn</span></h1>
+            </div>
+        </div>
+        <nav aria-label="breadcrumb" class="breadcrumb-nav mb-2">
+            <div class="container">
+            </div>
+        </nav>
+        <div class="page-content">
+            <div class="checkout">
+                <div class="container">
+                    <form th:action="@{/order/submit}" method="post">
+                        <div class="row">
+                            <div class="col-lg-9">
+                                <h2 class="checkout-title">Chi tiết đơn hàng</h2><!-- End .checkout-title -->
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <label>Họ *</label>
+                                        <input type="text" id="firstName" name="firstName" class="form-control" required>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <label>Tên *</label>
+                                        <input type="text" id="lastName" name="lastName" class="form-control" required>
+                                    </div>
+                                </div>
+
+                                <label>Số điện thoại *</label>
+                                <input type="text" name="phone" id="phone" class="form-control" required>
+
+                                <label>Địa chỉ *</label>
+                                <input type="text" name="address"  id="address" class="form-control" placeholder="Nhập địa chỉ nhà" required>
+
+                                <label>Mô tả khác</label>
+                                <textarea class="form-control"  id="description" name="description" cols="30" rows="4" placeholder="Ghi chú của bạn ở đây"></textarea>
+                            </div>
+                            <aside class="col-lg-3">
+                                <div class="summary">
+                                    <h3 class="summary-title">Đơn hàng của bạn</h3><!-- End .summary-title -->
+
+                                    <table class="table table-summary">
+                                        <thead>
+                                        <tr>
+                                            <th>Sản phẩm</th>
+                                            <th>Tổng</th>
+                                        </tr>
+                                        </thead>
+
+                                        <tbody>
+                                        <tr th:each="item : ${cartItems}">
+                                            <td th:text="${item.product.name}"></td>
+                                            <td th:text="${item.product.price * item.quantity}"></td>
+                                        </tr>
+                                        <tr class="summary-total">
+                                            <td>Total:</td>
+                                            <td th:text="${totalPrice}"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <div class="accordion-summary" id="accordion-payment">
+                                        <div class="card">
+                                            <div class="card-header" id="heading-3">
+                                                <h2 class="card-title">
+                                                    <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-3" aria-expanded="false" aria-controls="collapse-3">
+                                                        Cash on delivery
+                                                    </a>
+                                                </h2>
+                                            </div><!-- End .card-header -->
+                                            <div id="collapse-3" class="collapse" aria-labelledby="heading-3" data-parent="#accordion-payment">
+                                                <div class="card-body">Quisque volutpat mattis eros. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros.
+                                                </div><!-- End .card-body -->
+                                            </div><!-- End .collapse -->
+                                        </div><!-- End .card -->
+
+                                        <div class="card">
+                                            <div class="card-header" id="heading-4">
+                                                <h2 class="card-title">
+                                                    <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-4" aria-expanded="false" aria-controls="collapse-4">
+                                                        PayPal <small class="float-right paypal-link">What is PayPal?</small>
+                                                    </a>
+                                                </h2>
+                                            </div><!-- End .card-header -->
+                                            <div id="collapse-4" class="collapse" aria-labelledby="heading-4" data-parent="#accordion-payment">
+                                                <div class="card-body">
+                                                    Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede. Donec nec justo eget felis facilisis fermentum.
+                                                </div><!-- End .card-body -->
+                                            </div><!-- End .collapse -->
+                                        </div><!-- End .card -->
+
+                                        <div class="card">
+                                            <div class="card-header" id="heading-5">
+                                                <h2 class="card-title">
+                                                    <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-5" aria-expanded="false" aria-controls="collapse-5">
+                                                        Credit Card (Stripe)
+                                                        <img th:src="@{/fe/images/payments-summary.png}" alt="payments cards">
+                                                    </a>
+                                                </h2>
+                                            </div><!-- End .card-header -->
+                                            <div id="collapse-5" class="collapse" aria-labelledby="heading-5" data-parent="#accordion-payment">
+                                                <div class="card-body"> Donec nec justo eget felis facilisis fermentum.Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Lorem ipsum dolor sit ame.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-outline-primary-2 btn-order btn-block">
+                                        <span class="btn-text">ĐẶT HÀNG</span>
+                                        <span class="btn-hover-text">XÁC NHẬN MUA HÀNG</span>
+                                    </button>
+                                </div>
+                            </aside>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer th:replace="fragment/footer :: footer"></footer>
+</div><!-- End .page-wrapper -->
+<button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
+<script th:replace="fragment/script :: script"></script>
+</body>
+</html>
