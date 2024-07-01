@@ -8,6 +8,9 @@ import com.project.WebsiteBanDienThoai.service.OrderService;
 import com.project.WebsiteBanDienThoai.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -146,11 +149,16 @@ public class OrderController {
         return "cart/order-confirmation";
     }
     @GetMapping("/order/history")
-    public String orderHistory(Model model, Principal principal ) {
+    public String orderHistory(Model model, Principal principal,
+                               @RequestParam(value = "page", defaultValue = "0") int page,
+                               @RequestParam(value = "size", defaultValue = "10") int size) {
         String username = principal.getName();
         User user = userService.findByUsername(username).orElseThrow(() -> new RuntimeException("User not found"));
-        List<OrderDetail> orders = orderService.getOrdersByUser(user);
-        model.addAttribute("orders", orders);
+        Pageable pageable = PageRequest.of(page, size);
+        Page<OrderDetail> ordersPage = orderService.getOrdersByUser(user, pageable);
+        model.addAttribute("ordersPage", ordersPage);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", ordersPage.getTotalPages());
         return "/cart/history-order";
     }
     @GetMapping("/admin/qldonhang")
@@ -174,5 +182,12 @@ public class OrderController {
                                     @RequestParam Long statusId) {
         orderService.updateOrderStatus(orderId, statusId);
         return "redirect:/admin/qldonhang";
+    }
+
+    @GetMapping("/order/history/{id}")
+    public String showOrderDetail(@PathVariable Long id, Model model) {
+        List<OrderDetail> orderDetails = orderService.getOrderDetailsByOrderId(id);
+        model.addAttribute("orderDetails", orderDetails);
+        return "cart/order-detail";
     }
 }

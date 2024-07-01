@@ -6,6 +6,8 @@ import com.project.WebsiteBanDienThoai.repository.OrderRepository;
 import com.project.WebsiteBanDienThoai.repository.StatusOrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -92,5 +94,11 @@ public class OrderService {
 
     public List<OrderDetail> getAllOrderDetail() {
         return orderDetailRepository.findAll();
+    }
+    public List<OrderDetail> getOrderDetailsByOrderId(Long orderId) {
+        return orderDetailRepository.findByOrderId(orderId);
+    }
+    public Page<OrderDetail> getOrdersByUser(User user, Pageable pageable) {
+        return orderDetailRepository.findByUser(user, pageable);
     }
 }
