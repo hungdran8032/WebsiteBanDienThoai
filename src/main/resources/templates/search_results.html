@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kết quả tìm kiếm</title>
+</head>
+<body>
+<h1>Kết quả tìm kiếm cho: <span th:text="${keyword}"></span></h1>
+<ul>
+    <li th:each="product : ${products}">
+        <img th:src="@{${product.image}}" alt="Product Image" />
+        <h2 th:text="${product.name}"></h2>
+        <p th:text="${product.description}"></p>
+        <p>Giá: <span th:text="${product.price}"></span></p>
+    </li>
+</ul>
+</body>
+</html>

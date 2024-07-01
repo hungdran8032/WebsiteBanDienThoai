@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -162,4 +163,11 @@ public class ProductController {
         return "redirect:/admin/products";
     }
 
+    @GetMapping("/search")
+    public String searchProducts(@RequestParam("q") String keyword, Model model) {
+        List<Product> products = productService.searchProducts(keyword);
+        model.addAttribute("products", products);
+        model.addAttribute("keyword", keyword); // Add this line to pass the keyword to the view
+        return "/products/list-product";
+    }
 }
