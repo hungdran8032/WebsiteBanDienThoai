@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head th:replace="fragment/head :: head"></head>
+<body>
+<div class="page-wrapper">
+  <header th:replace="fragment/header :: header"></header>
+  <main class="main">
+    <nav aria-label="breadcrumb" class="breadcrumb-nav border-0 mb-0">
+      <div class="container d-flex align-items-center">
+      </div>
+    </nav>
+
+    <div class="page-content">
+      <div class="container">
+        <div class="product-details-top">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="product-gallery product-gallery-vertical">
+                <div class="row">
+                  <figure class="product-main-image">
+                    <img id="product-zoom" th:src="@{/images/{image}(image=${products.image})}" alt="product image">
+                  </figure>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="product-details">
+                <h1 class="product-title" th:text="${products.name}">Product Name</h1><!-- End .product-title -->
+
+                <div class="ratings-container">
+                  <div class="ratings">
+                    <div class="ratings-val" style="width: 80%;"></div><!-- End .ratings-val -->
+                  </div><!-- End .ratings -->
+                  <a class="ratings-text" href="#product-review-link" id="review-link">( 2 Reviews )</a>
+                </div>
+
+                <div class="product-price" th:text="${products.price} + ' ' + 'VND'">
+                  $84.00
+                </div>
+
+                <div th:if="${products.stock != 0}" class="product-content" th:text="'Còn lại:' + ' ' + ${products.stock}" >
+
+                </div>
+                <div class="product-content">
+                  <p th:text="'Mô tả:' + ' ' +${products.description}"></p>
+                </div>
+                <form th:action="@{/cart/add}" method="post" th:if="${products.stock != 0}">
+                  <div class="details-filter-row details-row-size" th:if="${products.stock != 0}">
+                    <label for="qty">Qty:</label>
+                    <div class="product-details-quantity">
+                      <input type="number" id="qty" class="form-control" name="quantity" value="1" min="1" max="${products.stock}" step="1" data-decimals="0" required>
+                    </div>
+                  </div>
+
+                  <div class="product-details-action">
+
+                      <input type="hidden" th:value="${products.id}" name="productId"/>
+                      <button type="submit" class="btn-product btn-cart"><span>Thêm vào giỏ hàng</span></button>
+
+                      <span th:if="${products.stock == 0}" class="text-muted text-center" > Hết hàng</span>
+                    <div class="details-action-wrapper">
+                      <a href="#" class="btn-product btn-wishlist" title="Wishlist"><span>Add to Wishlist</span></a>
+                    </div>
+                 </div>
+                </form>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="product-details-tab">
+          <ul class="nav nav-pills justify-content-center" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="product-desc-link" data-toggle="tab" href="#product-desc-tab" role="tab" aria-controls="product-desc-tab" aria-selected="true">Description</a>
+            </li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane fade show active" id="product-desc-tab" role="tabpanel" aria-labelledby="product-desc-link">
+              <div class="product-desc-content">
+                <h3>Product Information</h3>
+                <p th:text="${products.description}">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna viverra non, semper suscipit, posuere a, pede. Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis. Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate sem tristique cursus. </p>
+                <ul>
+                  <li>Nunc nec porttitor turpis. In eu risus enim. In vitae mollis elit. </li>
+                  <li>Vivamus finibus vel mauris ut vehicula.</li>
+                  <li>Nullam a magna porttitor, dictum risus nec, faucibus sapien.</li>
+                </ul>
+
+                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna viverra non, semper suscipit, posuere a, pede. Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis. Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate sem tristique cursus. </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer th:replace="fragment/footer :: footer"></footer>
+</div><!-- End .page-wrapper -->
+<button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
+<script th:replace="fragment/script :: script"></script>
+</body>
+</html>
