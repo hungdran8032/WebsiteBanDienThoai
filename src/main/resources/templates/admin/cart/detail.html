@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security6"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Detail</title>
+</head>
+<body>
+<section  layout:fragment="content">
+    <section class="content-header"><h1>Quản lý đơn hàng</h1></section>
+    <section class="content">
+        <form th:action="@{/admin/qldonhang/{orderId}/update-status(orderId=${order.id})}" method="post">
+    <!-- Các thông tin đơn hàng khác -->
+    <div>
+        <label for="statusOrder">Status:</label>
+        <select id="statusOrder" name="statusId">
+            <option th:each="status : ${statusOrders}" th:value="${status.id}" th:text="${status.name}"
+                    th:selected="${status.id == order.statusOrder.id}"></option>
+        </select>
+    </div>
+    <button type="submit">Update Status</button>
+</form>
+    </section>
+</section>
+</body>
+</html>

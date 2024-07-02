@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Chỉnh sửa quyền</title>
+    <script>
+        function validateCheckboxSelection() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"][name="roleIds"]');
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const checkedCheckboxes = document.querySelectorAll('input[type="checkbox"][name="roleIds"]:checked');
+                    if (checkedCheckboxes.length > 1) {
+                        alert("Chỉ được chọn một quyền.");
+                        this.checked = false;
+                    }
+                });
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', validateCheckboxSelection);
+    </script>
+</head>
+<body>
+<section layout:fragment="content">
+    <h1>Chỉnh sửa quyền cho người dùng <span th:text="${user.username}">User</span></h1>
+    <form th:action="@{/admin/edit-role}" method="post">
+        <input type="hidden" th:name="userId" th:value="${user.id}" />
+        <div th:each="role : ${allRoles}">
+            <input type="checkbox" th:name="roleIds" th:value="${role.id}" th:checked="${user.roles.contains(role)}" /> <span th:text="${role.name}">Role Name</span><br/>
+        </div>
+        <button type="submit" class="btn btn-primary">Cập nhật quyền</button>
+    </form>
+</section>
+</body>
+</html>

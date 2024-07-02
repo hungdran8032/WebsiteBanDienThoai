@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security6"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Order History</title>
+</head>
+<body>
+<section  layout:fragment="content">
+    <section class="content-header"><h1>Quản lý đơn hàng</h1></section>
+    <section class="content">
+        <div class="box box-info">
+            <div class="box-body">
+                <div class="table-responsive">
+                    <table class="table no-margin">
+                        <thead>
+                        <tr>
+                            <th>Tên khách hàng</th>
+                            <th>Địa chỉ</th>
+                            <th>SDT</th>
+                            <th>Mô tả</th>
+                            <th>Ngày đặt hàng</th>
+                            <th>Trạng thái đơn hàng</th>
+                            <th>Cập nhật trạng thái</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="orderdetail : ${orders}">
+                            <td th:text="${orderdetail.firstName} + ' ' + ${orderdetail.lastName}"></td>
+                            <td th:text="${orderdetail.address}"></td>
+                            <td th:text="${orderdetail.phone}"></td>
+                            <td th:text="${orderdetail.description}"></td>
+                            <td th:text="${orderdetail.orderDate}"></td>
+                            <td>
+                                <span th:text="${orderdetail.statusOrder.name}"
+                                      th:classappend="${orderdetail.statusOrder.name == 'Chờ xác nhận'} ? 'label label-warning' :
+                                                     (${orderdetail.statusOrder.name == 'Đang vận chuyển'} ? 'label label-info' :
+                                                     (${orderdetail.statusOrder.name == 'Đã giao hàng'} ? 'label label-success' :
+                                                     (${orderdetail.statusOrder.name == 'Hủy đơn'} ? 'label label-danger' : '')))">
+                                </span>
+                            </td>
+                            <td>
+                                <a class="btn btn-sm btn-info btn-flat" th:href="@{/admin/qldonhang/{orderId}(orderId=${orderdetail.id})}">Xem</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+</body>
+</html>
