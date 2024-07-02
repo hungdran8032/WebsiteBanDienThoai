@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security6"
+      layout:decorate="~{layout}">
+<head>
+    <title>Edit Category</title>
+</head>
+<body>
+<section layout:fragment="content">
+    <section class="content-header"><h1>Sửa thể loại</h1></section>
+    <section class="content">
+        <form th:action="@{/admin/categories/edit}" th:object="${category}" method="post">
+            <input type="hidden" th:field="*{id}"/>
+            <label>Name:</label>
+            <input type="text" th:field="*{name}"/>
+            <button type="submit">Save</button>
+        </form>
+        <a th:href="@{/admin/categories}">Back to Categories</a>
+    </section>
+</section>
+</body>
+
+</html>
