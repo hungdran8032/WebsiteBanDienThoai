@@ -1,0 +1,65 @@
+<footer class="footer"  xmlns:th="http://www.thymeleaf.org" th:fragment="footer" xmlns:sec="http://www.thymeleaf.org/extras/spring-security6">
+    <div class="footer-middle">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-lg-3">
+                    <div class="widget widget-about">
+                        <img th:src="@{/fe/images/demos/demo-4/logo-footer.png}" class="footer-logo" alt="Footer Logo" width="105" height="25">
+                        <p>Cửa hàng bán lẻ điện thoại</p>
+                        <div class="widget-call">
+                            <i class="icon-phone"></i>
+                            Thắc mắc? Hãy gọi vào số điện thoại
+                            <a href="tel:#">+0123 456 789</a>
+                        </div><!-- End .widget-call -->
+                    </div><!-- End .widget about-widget -->
+                </div><!-- End .col-sm-6 col-lg-3 -->
+
+                <div class="col-sm-6 col-lg-3">
+                    <div class="widget">
+                        <h4 class="widget-title">Hữu ích</h4><!-- End .widget-title -->
+
+                        <ul class="widget-list">
+                            <li><a href="about.html">Về cửa hàng</a></li>
+                            <li><a href="#">Mua săm trực tiếp tại cửa hàng</a></li>
+                            <li><a href="contact.html">Liên hệ chúng tôi</a></li>
+                        </ul><!-- End .widget-list -->
+                    </div><!-- End .widget -->
+                </div><!-- End .col-sm-6 col-lg-3 -->
+
+                <div class="col-sm-6 col-lg-3">
+                    <div class="widget">
+                        <h4 class="widget-title">Dịch vụ khách hàng</h4><!-- End .widget-title -->
+
+                        <ul class="widget-list">
+                            <li><a href="#">Mua sắm</a></li>
+                            <li><a href="#">Terms and conditions</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                        </ul><!-- End .widget-list -->
+                    </div><!-- End .widget -->
+                </div><!-- End .col-sm-6 col-lg-3 -->
+
+                <div class="col-sm-6 col-lg-3">
+                    <div class="widget">
+                        <h4 class="widget-title">Tài khoản</h4><!-- End .widget-title -->
+
+                        <ul class="widget-list">
+
+                            <li sec:authorize="isAuthenticated()">
+                                <form th:action="@{/logout}" method="post">
+                                    <a class="btn btn-outline-light"
+                                            type="submit">Đăng xuất</a>
+                                </form>
+                            </li>
+                            <li sec:authorize="!isAuthenticated()">
+                                <a th:href="@{/login}">Đăng nhập</a>
+                            </li>
+                            <li><a href="cart.html">Xem giỏ hàng</a></li>
+                            <li><a href="#">Xem sản phẩm yêu thích</a></li>
+                            <li><a href="#">Trợ giúp</a></li>
+                        </ul><!-- End .widget-list -->
+                    </div><!-- End .widget -->
+                </div><!-- End .col-sm-6 col-lg-3 -->
+            </div><!-- End .row -->
+        </div><!-- End .container -->
+    </div><!-- End .footer-middle -->
+</footer><!-- End .footer -->

@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head th:replace="fragment/head :: head"></head>
+<body>
+<div class="page-wrapper">
+    <header th:replace="fragment/header :: header"></header>
+    <main class="main">
+        <div class="page-header text-center" style="background-image: url('/fe/images/page-header-bg.jpg')">
+            <div class="container">
+                <h1 class="page-title">Thông tin<span>tài khoản</span></h1>
+            </div>
+        </div>
+        <nav aria-label="breadcrumb" class="breadcrumb-nav mb-2">
+            <div class="container">
+            </div>
+        </nav>
+        <div class="page-content">
+            <div class="checkout">
+                <div class="container">
+                    <div th:if="${user}">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                Chỗ này để ảnh
+                            </div>
+                            <div class="col-lg-9">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <p><strong>Tên đăng nhập:</strong> <span th:text="${user.username}"></span></p>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <p><strong>Họ và tên:</strong> <span th:text="${user.firstName} + ' ' + ${user.lastName}"></span></p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <p><strong>Địa chỉ:</strong> <span th:text="${user.address}"></span></p>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <p><strong>Ngày sinh:</strong> <span th:text="${user.birthdate}"></span></p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <p><strong>Số điện thoại:</strong> <span th:text="${user.phone}"></span></p>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <p><strong>Email:</strong> <span th:text="${user.email}"></span></p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <p><strong>Giới tính:</strong> <span th:text="${user.gender}"></span></p>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <p><strong>Ngày tạo tài khoản:</strong> <span th:text="${user.createdAt}"></span></p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <a th:href="@{/profile/edit}" class="btn btn-primary">Chỉnh sửa hồ sơ</a>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div th:if="${errorMessage}">
+                        <p th:text="${errorMessage}"></p>
+                    </div>
+                </div>
+            </div>
+    </main>
+    <footer th:replace="fragment/footer :: footer"></footer>
+</div><!-- End .page-wrapper -->
+<button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
+<script th:replace="fragment/script :: script"></script>
+</body>
+</html>
