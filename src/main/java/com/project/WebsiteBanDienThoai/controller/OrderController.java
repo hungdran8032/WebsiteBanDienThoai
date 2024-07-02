@@ -167,6 +167,7 @@ public class OrderController {
         model.addAttribute("totalPages", ordersPage.getTotalPages());
         return "/cart/history-order";
     }
+
     @GetMapping("/admin/qldonhang")
     public String qldonhang(Model model) {
         List<Order> orders = orderService.getAllOrder();
