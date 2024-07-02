@@ -91,4 +91,8 @@ public class ProductService {
         List<Product> allProductsOfType = productRepository.findByTypeOfProductId(typeOfProductId);
         return allProductsOfType.subList(0, Math.min(6, allProductsOfType.size()));
     }
+    public List<Product> searchProducts(String keyword) {
+        return productRepository.findByNameContaining(keyword);
+    }
+
 }

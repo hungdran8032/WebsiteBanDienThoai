@@ -70,6 +70,7 @@ public class UserService implements UserDetailsService, OAuth2UserService<OAuth2
         return oAuth2User;
     }
 
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         var user = userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User not found"));
@@ -99,5 +100,44 @@ public class UserService implements UserDetailsService, OAuth2UserService<OAuth2
     }
 
 
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        var user = userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        return org.springframework.security.core.userdetails.User
+                .withUsername(user.getUsername())
+                .password(user.getPassword())
+                .authorities(user.getAuthorities())
+                .accountExpired(!user.isAccountNonExpired())
+                .accountLocked(!user.isAccountNonLocked())
+                .credentialsExpired(!user.isCredentialsNonExpired())
+                .disabled(!user.isEnabled())
+                .build();
+    }
+
+
+
+    public Optional<User> findByUsername(String username) throws UsernameNotFoundException {
+        return userRepository.findByUsername(username);
+    }
+
+    public List<User> getAllAccount(){
+        return userRepository.findAll();
+    }
+
+    public List<com.project.WebsiteBanDienThoai.model.Role> getAllRoles() {
+        return roleRepository.findAll();
+    }
+
+    public User findById(String id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("User not found"));
+    }
+
+    public void updateUserRoles(String userId, List<Long> roleIds) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new EntityNotFoundException("User not found"));
+        Set<com.project.WebsiteBanDienThoai.model.Role> roles = new HashSet<>(roleRepository.findAllById(roleIds));
+        user.setRoles(roles);
+        userRepository.save(user);
+    }
 }
 

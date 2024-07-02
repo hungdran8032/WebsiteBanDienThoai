@@ -9,5 +9,4 @@ public class WebsiteBanDienThoaiApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(WebsiteBanDienThoaiApplication.class, args);
 	}
-
 }
