@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security6"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách sản phẩm</title>
+</head>
+<body>
+<section layout:fragment="content">
+    <section class="content-header"><h1>Danh sách sản phẩm</h1></section>
+    <section class="content">
+        <a class="btn btn-sm btn-info btn-flat" th:href="@{/admin/products/add}">Thêm sản phẩm mới</a>
+        <div class="box box-info">
+            <div class="box-body">
+                <div class="table-responsive">
+                    <table class="table no-margin">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Tên</th>
+                            <th>Hình ảnh</th>
+                            <th>Mô tả</th>
+                            <th>Giá</th>
+                            <th>Kho</th>
+                            <th>Nhãn hiệu</th>
+                            <th>Danh mục</th>
+                            <th>Loại sản phẩm</th>
+                            <th>Trạng thái</th>
+                            <th>Hành động</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="product : ${productPage.getContent()}">
+                            <td th:text="${product.id}">ID</td>
+                            <td th:text="${product.name}">Tên</td>
+                            <td><img th:src="@{/images/{image}(image=${product.image})}" alt="Image" width="50"></td>
+                            <td th:text="${product.description}">Mô tả</td>
+                            <td th:text="${product.price}">Giá</td>
+                            <td th:text="${product.stock}">Kho</td>
+                            <td th:text="${product.brand.name}">Nhãn hiệu</td>
+                            <td th:text="${product.category.name}">Danh mục</td>
+                            <td th:text="${product.typeOfProduct.name}">Loại sản phẩm</td>
+                            <td>
+                                <span th:text="${product.statusProduct.name}"
+                                      th:classappend="${product.statusProduct.name == 'Hết hàng'} ? 'label label-danger' : 'label label-success'">
+                                </span>
+                            </td>
+                            <td>
+                                <a th:href="@{/admin/products/edit/{id}(id=${product.id})}">Sửa</a>
+                                <a th:href="@{/admin/products/delete/{id}(id=${product.id})}" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?');">Xóa</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                <li th:classappend="${productPage.hasPrevious()} ? '' : 'disabled'">
+                    <a th:href="@{/admin/products(page=${productPage.number - 1}, size=${productPage.size})}" aria-label="Previous"
+                       th:if="${productPage.hasPrevious()}">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li th:each="i : ${#numbers.sequence(0, productPage.totalPages - 1)}"
+                    th:classappend="${i == productPage.number} ? 'active'">
+                    <a th:href="@{/admin/products(page=${i}, size=${productPage.size})}" th:text="${i + 1}"></a>
+                </li>
+                <li th:classappend="${productPage.hasNext()} ? '' : 'disabled'">
+                    <a th:href="@{/admin/products(page=${productPage.number + 1}, size=${productPage.size})}" aria-label="Next"
+                       th:if="${productPage.hasNext()}">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </section>
+</section>
+</body>
+</html>
+
