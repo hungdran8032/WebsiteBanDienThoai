@@ -1,6 +1,8 @@
 package com.project.WebsiteBanDienThoai.controller;
 
+import com.project.WebsiteBanDienThoai.model.Role;
 import com.project.WebsiteBanDienThoai.model.User;
+import com.project.WebsiteBanDienThoai.service.RoleService;
 import com.project.WebsiteBanDienThoai.service.UserService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -13,13 +15,16 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
+    private final RoleService roleService;
     @GetMapping("/login")
     public String login() {
         return "login";
@@ -117,6 +122,18 @@ public class UserController {
         model.addAttribute("roles", userService.getAllRoles());
         return "/admin/list-user";
     }
+    @GetMapping("/admin/edit-role")
+    public String showEditRolePage(@RequestParam("userId") String userId, Model model) {
+        User user = userService.findById(userId);
+        List<Role> allRoles = roleService.getAllAccount();
+        model.addAttribute("user", user);
+        model.addAttribute("allRoles", allRoles);
+        return "admin/edit-role";
+    }
 
-
+    @PostMapping("/admin/edit-role")
+    public String updateRoles(@RequestParam("userId") String userId, @RequestParam("roleIds") List<Long> roleIds) {
+        userService.updateUserRoles(userId, roleIds);
+        return "redirect:/admin/user"; // Điều hướng trở lại trang danh sách người dùng
+    }
 }
