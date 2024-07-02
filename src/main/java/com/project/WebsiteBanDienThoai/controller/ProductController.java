@@ -163,6 +163,7 @@ public class ProductController {
         return "redirect:/admin/products";
     }
 
+
     @GetMapping("/search")
     public String searchProducts(@RequestParam("q") String keyword, Model model) {
         List<Product> products = productService.searchProducts(keyword);
@@ -170,4 +171,5 @@ public class ProductController {
         model.addAttribute("keyword", keyword); // Add this line to pass the keyword to the view
         return "/products/list-product";
     }
+
 }
