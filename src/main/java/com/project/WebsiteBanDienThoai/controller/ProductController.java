@@ -162,12 +162,4 @@ public class ProductController {
         productService.deleteProduct(id);
         return "redirect:/admin/products";
     }
-
-    @GetMapping("/search")
-    public String searchProducts(@RequestParam("q") String keyword, Model model) {
-        List<Product> products = productService.searchProducts(keyword);
-        model.addAttribute("products", products);
-        model.addAttribute("keyword", keyword); // Add this line to pass the keyword to the view
-        return "/products/list-product";
-    }
 }
