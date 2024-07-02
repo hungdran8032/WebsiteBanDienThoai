@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security6"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Sửa sản phẩm</title>
+</head>
+<body>
+<section  layout:fragment="content" >
+    <section class="content-header"><h1>Sửa sản phẩm</h1></section>
+    <section class="content">
+        <form th:action="@{/admin/products/edit/{id}(id=${product.id})}" th:object="${product}" method="post" enctype="multipart/form-data">
+            <div>
+                <label for="name">Tên:</label>
+                <input type="text" id="name" th:field="*{name}">
+                <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Tên lỗi</span>
+            </div>
+            <div>
+                <label for="image">Hình ảnh:</label>
+                <input type="file" id="image" name="images" >
+                <div th:if="${product.image}">
+                    <p>Hình ảnh hiện tại:</p>
+                    <img th:src="@{/images/{image}(image=${product.image})}" alt="Current Image" style="max-width: 200px; max-height: 200px;">
+                </div>
+            </div>
+            <div>
+                <label for="description">Mô tả:</label>
+                <textarea id="description" th:field="*{description}"></textarea>
+                <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Mô tả lỗi</span>
+            </div>
+            <div>
+                <label for="price">Giá:</label>
+                <input type="text" id="price" th:field="*{price}">
+                <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Giá lỗi</span>
+            </div>
+            <div>
+                <label for="stock">Kho:</label>
+                <input type="number" id="stock" th:field="*{stock}">
+                <span th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}">Kho lỗi</span>
+            </div>
+            <div>
+                <label for="brand">Nhãn hiệu:</label>
+                <select id="brand" th:field="*{brand.id}">
+                    <option th:each="brand : ${brands}" th:value="${brand.id}" th:text="${brand.name}">Nhãn hiệu</option>
+                </select>
+                <span th:if="${#fields.hasErrors('brand')}" th:errors="*{brand}">Nhãn hiệu lỗi</span>
+            </div>
+            <div>
+                <label for="category">Danh mục:</label>
+                <select id="category" th:field="*{category.id}">
+                    <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}">Danh mục</option>
+                </select>
+                <span th:if="${#fields.hasErrors('category')}" th:errors="*{category}">Danh mục lỗi</span>
+            </div>
+            <div>
+                <label for="typeOfProduct">Loại sản phẩm</label>
+                <select id="typeOfProduct" th:field="*{typeOfProduct.id}">
+                    <option th:each="typeOfProduct : ${typeOfProducts}" th:value="${typeOfProduct.id}" th:text="${typeOfProduct.name}">Danh mục</option>
+                </select>
+                <span th:if="${#fields.hasErrors('typeOfProduct')}" th:errors="*{typeOfProduct}">Danh mục lỗi</span>
+            </div>
+            <div>
+                <button type="submit">Lưu</button>
+            </div>
+        </form>
+        <a th:href="@{/admin/products}">Trở về danh sách</a>
+    </section>
+</section>
+</body>
+</html>
