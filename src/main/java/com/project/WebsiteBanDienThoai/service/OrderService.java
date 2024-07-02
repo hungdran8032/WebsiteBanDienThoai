@@ -105,7 +105,7 @@ public class OrderService {
 
     public List<MonthlyProductCount> getMonthlyProductCount() {
         return orderRepository.findMonthlyProductCount();
-
+    }
     public Page<Order> getAllOrders(Pageable pageable) {
         return orderRepository.findAll(pageable);
 
