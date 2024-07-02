@@ -22,10 +22,10 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 //    List<Order> findByUser(User user);
     Optional<Order> findById(Long id);
     List<Order> findByOrderDateBetween(Date startDate, Date endDate);
-
+    Page<Order> findAll(Pageable pageable);
     @Query("SELECT new com.project.WebsiteBanDienThoai.model.MonthlyProductCount(MONTH(o.orderDate), YEAR(o.orderDate), SUM(od.quantity)) " +
             "FROM Order o JOIN o.orderDetails od " +
             "GROUP BY YEAR(o.orderDate), MONTH(o.orderDate)")
     List<MonthlyProductCount> findMonthlyProductCount();
-    Page<Order> findAll(Pageable pageable);
+
 }

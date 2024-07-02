@@ -49,24 +49,24 @@
                     </table>
                 </div>
 
-                <div>
-                    <ul class="pagination">
-                        <li th:classappend="${currentPage == 0} ? 'disabled'">
-                            <a th:href="@{/admin/qldonhang(page=${currentPage - 1})}" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                        <li th:each="i : ${#numbers.sequence(0, totalPages - 1)}"
-                            th:classappend="${i == currentPage} ? 'active'">
-                            <a th:href="@{/admin/qldonhang(page=${i})}" th:text="${i + 1}">1</a>
-                        </li>
-                        <li th:classappend="${currentPage + 1 == totalPages} ? 'disabled'">
-                            <a th:href="@{/admin/qldonhang(page=${currentPage + 1})}" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+<!--                <div>-->
+<!--                    <ul class="pagination">-->
+<!--                        <li th:classappend="${currentPage == 0} ? 'disabled'">-->
+<!--                            <a th:href="@{/admin/qldonhang(page=${currentPage - 1})}" aria-label="Previous">-->
+<!--                                <span aria-hidden="true">&laquo;</span>-->
+<!--                            </a>-->
+<!--                        </li>-->
+<!--                        <li th:each="i : ${#numbers.sequence(0, totalPages - 1)}"-->
+<!--                            th:classappend="${i == currentPage} ? 'active'">-->
+<!--                            <a th:href="@{/admin/qldonhang(page=${i})}" th:text="${i + 1}">1</a>-->
+<!--                        </li>-->
+<!--                        <li th:classappend="${currentPage + 1 == totalPages} ? 'disabled'">-->
+<!--                            <a th:href="@{/admin/qldonhang(page=${currentPage + 1})}" aria-label="Next">-->
+<!--                                <span aria-hidden="true">&raquo;</span>-->
+<!--                            </a>-->
+<!--                        </li>-->
+<!--                    </ul>-->
+<!--                </div>-->
 
             </div>
         </div>
